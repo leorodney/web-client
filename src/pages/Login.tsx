@@ -1,4 +1,4 @@
-import axios from "axios";
+import { server, endpoints } from "../utils/axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SidebySide from "../components/SidebySide";
@@ -35,7 +35,7 @@ export default function Login() {
     e.preventDefault();
     if(!loginData.emailorusername || !loginData.password) return setErrors([...errors, "Please fill in all fields"]);
     try {
-      const authResponse =  await axios.post(`${import.meta.env.VITE_LOCAL_SERVER}:${import.meta.env.VITE_LOCAL_PORT}/login`, loginData, {withCredentials: true});
+      const authResponse =  await server.post(endpoints.login, loginData);
 
       if(authResponse.data.ok){
         // dispatch auth action to the store:
@@ -44,7 +44,8 @@ export default function Login() {
       }
 
     } catch (error : any) {
-      error.response?.status == 500 ? setErrors([...errors, "Somethings went wrong please try again soon."]) : setErrors([...errors, error.response.data.error]);
+      console.error(error);
+      // error.response?.status == 500 ? setErrors([...errors, "Somethings went wrong please try again soon."]) : setErrors([...errors, error.response.data.error]);
     }
   }
 

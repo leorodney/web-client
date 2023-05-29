@@ -1,4 +1,5 @@
-import axios from "axios";
+import "@handy.js/handy";
+import { server, endpoints } from "../utils/axios";
 import { useEffect, useState } from "react";
 import SidebySide from "../components/SidebySide";
 import { registerFields } from "../utils/form";
@@ -41,10 +42,10 @@ export default function Register() {
     if(!validator.passconfirm(registerData.password, registerData.confirmpassword)) return setErrors([...errors, "Passwords do not match!"]);
 
     const {email, username, password} = registerData;
-    const firstname = registerData.fullname.split(" ")[0].charAt(0).toUpperCase() + registerData.fullname.split(" ")[0].slice(1);
-    const lastname = registerData.fullname.split(" ")[1].charAt(0).toUpperCase() + registerData.fullname.split(" ")[1].slice(1);
+    const firstname = registerData.fullname.split(" ")[0].toCapitalCase();
+    const lastname = registerData.fullname.split(" ")[1].toCapitalCase();
     try{
-      const authResponse =  await axios.post(`${import.meta.env.VITE_LOCAL_SERVER}:${import.meta.env.VITE_LOCAL_PORT}/register`, { firstname, lastname, email, username, password }, {withCredentials: true});
+      const authResponse =  await server.post(endpoints.register, { firstname, lastname, email, username, password });
       if(authResponse.data.ok){
         // dispatch auth action to the store:
         dispatch(login(authResponse.data.user));

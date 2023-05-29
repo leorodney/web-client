@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import axios from "axios";
+import { server, endpoints } from "../utils/axios"
 import { login, logout } from "../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreState } from "../interfaces/store";
@@ -18,7 +18,7 @@ export default function useAuthorization(fallbackRoute: string) {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const authResponse = await axios.get(`${import.meta.env.VITE_LOCAL_SERVER}:${import.meta.env.VITE_LOCAL_PORT}/auth`, {withCredentials: true});
+                const authResponse = await server.get(endpoints.auth);
                 if(authResponse.data.ok){
                     dispatch(login(authResponse.data.user));
                     navigate("/");

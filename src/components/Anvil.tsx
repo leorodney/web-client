@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import { server, endpoints } from "../utils/axios";
 import React from "react";
 import { Submit } from "../interfaces/form";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +20,7 @@ export default function Anvil() {
     if(!prompt.value) return alert("Please enter a prompt");
     try{
       dispatch(setStatus({generating: true}));
-      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_SERVER}:${import.meta.env.VITE_LOCAL_PORT}/production`, {prompt: prompt.value}, {withCredentials: true});
+      const { data } = await server.post(endpoints.production, {prompt: prompt.value});
       console.log(data);
       dispatch(setPrompt({...prompt, img: `data:image/jpg;base64,${data.img}`}));
     }catch{
@@ -34,7 +35,7 @@ export default function Anvil() {
     if(!prompt.value) return alert("Please enter a prompt");
     try{
       dispatch(setStatus({publishing: true}));
-      const { data } = await axios.post(`${import.meta.env.VITE_LOCAL_SERVER}:${import.meta.env.VITE_LOCAL_PORT}/prompt`, {value: prompt.value, img: prompt.img}, {withCredentials: true});
+      const { data } = await server.post(endpoints.newPrompt, {value: prompt.value, img: prompt.img});
       dispatch(addPrompt(data));
       console.log(data);
     }catch{
@@ -49,7 +50,7 @@ export default function Anvil() {
   const surprisemePrompt : Submit = async () => {
     try{
       dispatch(setStatus({prompting: true}));
-      const { data } = await axios.get(`${import.meta.env.VITE_LOCAL_SERVER}:${import.meta.env.VITE_LOCAL_PORT}/surpriseme`);
+      const { data } = await server.get(endpoints.promptify);
       console.log(data);
       dispatch(setPrompt({...prompt, value: data.prompt}));
     }catch{

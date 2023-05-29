@@ -3,7 +3,7 @@ import Loader from "./Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreState } from "../interfaces/store";
 import { useEffect } from "react";
-import axios from "axios";
+import { server, endpoints } from "../utils/axios";
 import { setPrompts } from "../store/promptsSlice";
 import { setStatus } from "../store/productionSlice";
 
@@ -19,7 +19,7 @@ export default function ShowCases() {
     const fetchPrompts = async () => {
       try {
         dispatch(setStatus({fetching: true}));
-        const { data } = await axios.get(`${import.meta.env.VITE_LOCAL_SERVER}:${import.meta.env.VITE_LOCAL_PORT}/showcases`, {withCredentials: true});
+        const { data } = await server.get(endpoints.prompts);
         // set the prompts to the store
         dispatch(setPrompts(data));
       } catch (error) {

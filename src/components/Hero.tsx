@@ -1,5 +1,5 @@
 import HeroBG from '../assets/HeroBG.png';
-import Header from './Header';
+import leorodney from '../assets/leorodney-w.png';
 import { useDispatch } from 'react-redux';
 import { KeyboardEvent, useState } from 'react';
 import { setSearchQuery as setSearchQueryAction } from '../store/promptsSlice';
@@ -18,7 +18,9 @@ export default function Hero() {
 
   return (
     <main className='h-[80vh] w-screen text-white flex items-center justify-center gap-10 flex-col bg-cover bg-center bg-no-repeat backdrop:brightness-75' style={{backgroundImage: `url(${HeroBG})`}}>
-      <Header/>
+      <img src={leorodney} className='w-48' alt="leorodney logo" />
+      <h1 className='text-white text-8xl font-thin font-serif' >LEORDONEY</h1>
+      <p className='text-gray-200 text-xl'>AI image generator based on Dall-E OpenAI</p>
       <div className='h-14 w-[70%] flex items-center justify-between gap-4'>
         <div className='relative h-full w-full flex items-center'>
           <label htmlFor="community-search" className='absolute z-10 left-3 top-1/2 -translate-y-1/2 text-xl text-slate-400'><i className="fi fi-br-search"></i></label>

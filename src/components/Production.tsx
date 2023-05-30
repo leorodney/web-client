@@ -20,11 +20,7 @@ export default function Production() {
   useEffect(() => {
     document.addEventListener('click', hideProduction);
     // prevent scrolling when the production component is visible
-    if(visibility) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = visibility ? 'hidden' : 'unset';
     return () => document.removeEventListener('click', hideProduction);
   }, [visibility]);
 

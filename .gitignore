@@ -23,11 +23,5 @@
 **/.sln
 **/.sw?
 
-# Rest client vscode ext
-**.http
-**.rest
-
-# screenshots:
-# **/screenshots
-
+# Envirement variables
 *.txt

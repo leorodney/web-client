@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Community from "./pages/Community";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import NotFound from "./pages/404";
 
 export default function Router() {
   return (
@@ -15,6 +16,8 @@ export default function Router() {
             {/* Point the same Register page for both "/register" and "/signop" routes */}
             <Route path="/register" element={<Register />} />
             <Route path="/signup" element={<Register />} />
+            {/* 404 not found route */}
+            <Route path="*" element={<NotFound />} />
         </Routes>
     </BrowserRouter>
   )

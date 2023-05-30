@@ -39,13 +39,14 @@ export default function Login() {
 
       if(authResponse.data.ok){
         // dispatch auth action to the store:
+        console.log("logged in", authResponse.data.user);
         dispatch(login(authResponse.data.user));
         return navigate("/");
       }
 
     } catch (error : any) {
       console.error(error);
-      // error.response?.status == 500 ? setErrors([...errors, "Somethings went wrong please try again soon."]) : setErrors([...errors, error.response.data.error]);
+      error.response?.status == 500 ? setErrors([...errors, "Somethings went wrong please try again soon."]) : setErrors([...errors, error.response.data.error]);
     }
   }
 
@@ -53,4 +54,3 @@ export default function Login() {
     <SidebySide title="Login" fields={loginFields} onSubmit={authLogin} authData={[loginData, setLoginData]} errors={errors}/>
   )
 }
-

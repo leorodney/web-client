@@ -19,4 +19,5 @@ export const endpoints = {
     production: "/production",
     prompts: "/prompts",
     newPrompt: "/prompts/new",
+    userPrompts: (uid: string) => "/prompts/mine/" + uid,
 };

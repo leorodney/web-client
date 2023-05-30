@@ -3,6 +3,7 @@ import Community from "./pages/Community";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/404";
+import Profile from "./pages/Profile";
 
 export default function Router() {
   return (
@@ -18,6 +19,8 @@ export default function Router() {
             <Route path="/signup" element={<Register />} />
             {/* 404 not found route */}
             <Route path="*" element={<NotFound />} />
+            {/* Users profiles */}
+            <Route path="/:username" element={<Profile />} />
         </Routes>
     </BrowserRouter>
   )

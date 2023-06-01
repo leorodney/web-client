@@ -1,4 +1,5 @@
 @import url('https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css');
 
 @tailwind base;
 @tailwind components;
@@ -11,6 +12,7 @@ body{
 
 :root{
   --clr-p: #BE14C1;
+  --clr-ac: #00D9CF;
 }
 
 *, *::before, *::after{

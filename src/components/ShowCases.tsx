@@ -20,6 +20,7 @@ export default function ShowCases() {
       try {
         dispatch(setStatus({fetching: true}));
         const { data } = await server.get(endpoints.prompts);
+        console.log(data);
         // set the prompts to the store
         dispatch(setPrompts(data));
       } catch (error) {
@@ -44,6 +45,7 @@ export default function ShowCases() {
           // reversing the prompts enable to spotlight the new published prompts
           [...prompts].reverse().map((prompt, index) => (
             <Prompt
+              _id={prompt._id}
               key={index}
               img={prompt.img}
               author={username}

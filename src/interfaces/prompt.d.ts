@@ -1,5 +1,5 @@
 export interface Prompt{
-    id?: string,
+    _id?: string,
     img: string,
     author: string,
     value:string,

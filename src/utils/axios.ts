@@ -3,7 +3,7 @@ import axios from "axios";
 // creating a new axios instance with default configs
 export const server = axios.create({
     baseURL: `${import.meta.env.VITE_SERVER}:${import.meta.env.VITE_SERVER_PORT}`,
-    timeout: 5000,
+    timeout: 10000,
     headers:{
         "Content-Type": "application/json"
     },
@@ -19,5 +19,7 @@ export const endpoints = {
     production: "/production",
     prompts: "/prompts",
     newPrompt: "/prompts/new",
+    promptlikes: "/prompt/likes",
+    promptdownloads: "/prompt/downloads",
     userPrompts: (uid: string) => "/prompts/mine/" + uid,
 };
